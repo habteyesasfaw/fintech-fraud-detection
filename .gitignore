@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+venv.bak/
+
+# Logs
+logs/
+*.log
+
+# Data
+data/processed/
+data/external/
+*.csv
+*.xlsx
+
+# Models
+models/*.pkl
+
+# MLflow
+mlruns/
+mlflow/artifacts/
+mlflow/experiment_logs/
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Flask cache
+instance/
+
+# Other
+*.bak
+*.swp
