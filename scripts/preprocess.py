@@ -1,6 +1,8 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-
+import numpy as np
+import socket
+import struct
 # Handle Missing Values
 def handle_missing_values(df):
     # Dropping rows with missing values 
@@ -27,20 +29,43 @@ def eda(df):
     print(pd.crosstab(df['browser'], df['class'], normalize='index'))
 
 # Convert IP addresses to integer format
-def ip_to_int(ip_address):
-    octets = map(int, ip_address.split('.'))
-    return sum([octet << (8 * i) for i, octet in enumerate(reversed(octets))])
 
+
+def ip_to_int(ip_address):
+    """
+    Convert an IP address (either as a string or decimal integer) to an integer.
+    If the IP address is a decimal (integer or float), it attempts to convert it 
+    to a standard IP address format before processing.
+    """
+    try:
+        # If ip_address is a float, it's invalid as an IP string
+        if isinstance(ip_address, float):
+            # Optionally convert float to int if it looks like an integer IP
+            ip_address = int(ip_address)
+        
+        # If ip_address is now an integer, convert it to IP string format
+        if isinstance(ip_address, int):
+            ip_address = socket.inet_ntoa(struct.pack('!I', ip_address))
+        
+        # Split and convert IP address (string) to integer
+        octets = list(map(int, ip_address.split('.')))
+        return sum([octet << (8 * i) for i, octet in enumerate(reversed(octets))])
+    
+    except (AttributeError, ValueError):
+        raise ValueError(f"Invalid IP address: {ip_address}")
+
+# Merging function example
 def merge_datasets(fraud_df, ip_df):
-    # Convert IP addresses to integers for merging
+    """
+    Merge fraud_df with ip_df using the IP address ranges after converting IPs to integers.
+    """
     fraud_df['ip_address_int'] = fraud_df['ip_address'].apply(ip_to_int)
-    
-    # Merging on IP address ranges
     ip_df['lower_bound_ip_address_int'] = ip_df['lower_bound_ip_address'].apply(ip_to_int)
-    ip_df['upper_bound_ip_address_int'] = ip_df['upper_bound_ip_address'].apply(ip_to_int)
-    
-    merged_df = pd.merge(fraud_df, ip_df, how='left', left_on='ip_address_int', right_on='lower_bound_ip_address_int')
+    # Perform the merge (just an example, adjust to your actual logic)
+    merged_df = fraud_df.merge(ip_df, left_on='ip_address_int', right_on='lower_bound_ip_address_int', how='left')
     return merged_df
+
+
 
 # Feature Engineering
 def feature_engineering(df):
