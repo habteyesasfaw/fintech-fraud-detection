@@ -3,7 +3,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 # Handle Missing Values
 def handle_missing_values(df):
-    # Dropping rows with missing values for simplicity (You can also impute)
+    # Dropping rows with missing values 
     df = df.dropna()
     return df
 
