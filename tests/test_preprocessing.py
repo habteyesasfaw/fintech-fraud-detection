@@ -2,7 +2,7 @@ import pandas as pd
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '../scripts')))
-from preprocess import handle_missing_values, data_cleaning, feature_engineering, ip_to_int, encode_categorical
+from preprocessing import(handle_missing_values, data_cleaning, feature_engineering, ip_to_int, encode_categorical)
 import numpy as np
 
 def test_handle_missing_values():
