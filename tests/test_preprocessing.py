@@ -1,14 +1,8 @@
 import pandas as pd
 import sys
 import os
-import pytest
-
-# Append the scripts directory to the system path
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '../scripts')))
-
-# Import from preprocess module
-from preprocessing import handle_missing_values, data_cleaning, feature_engineering, ip_to_int, encode_categorical
-
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), './scripts')))
+from preprocessing import(handle_missing_values, data_cleaning, feature_engineering, ip_to_int, encode_categorical)
 import numpy as np
 
 def test_handle_missing_values():
