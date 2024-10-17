@@ -32,8 +32,8 @@ def eda(df):
 
 
 def ip_to_int(ip_address):
-    """
-    Convert an IP address (either as a string or decimal integer) to an integer.
+
+    """ Convert an IP address (either as a string or decimal integer) to an integer.
     If the IP address is a decimal (integer or float), it attempts to convert it 
     to a standard IP address format before processing.
     """
@@ -56,6 +56,7 @@ def ip_to_int(ip_address):
 
 # Merging function example
 def merge_datasets(fraud_df, ip_df):
+    
     """
     Merge fraud_df with ip_df using the IP address ranges after converting IPs to integers.
     """
