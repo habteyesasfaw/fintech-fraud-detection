@@ -1,4 +1,3 @@
-# fraud_detection.py
 
 import numpy as np
 
