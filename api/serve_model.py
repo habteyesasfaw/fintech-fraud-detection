@@ -1,4 +1,3 @@
-# serve_model.py
 
 from flask import Flask, request, jsonify
 from fraud_detection import predict_fraud
