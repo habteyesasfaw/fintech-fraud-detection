@@ -1,0 +1,5 @@
+Flask
+joblib            # For loading the trained model
+numpy            # Example: dependencies of the model
+pandas            # Data handling
+flask-logging     # For request and error logging
